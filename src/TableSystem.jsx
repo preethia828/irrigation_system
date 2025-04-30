@@ -1,28 +1,10 @@
 import React from 'react'
+import { cal } from './TimeCal';
 function TableSystem({data}) {
 
     console.log(data,"data");
     
-    const cal=(startTime,endTime)=>{
-      const time = new Date()
-
-    const currentTime = 
-    time.getHours().toString().padStart(2, '0') +
-    time.getMinutes().toString().padStart(2, '0') +
-    time.getSeconds().toString().padStart(2, '0')
-
-      
-
-      if (currentTime < startTime) {
-         return "Pending";
-       } else if (currentTime >= startTime && currentTime <= endTime) {
-         return "Progress";
-       } else {
-       return  "Done";
-       }
-      
-  }
-
+    
   return (
     <>
     
@@ -46,14 +28,16 @@ function TableSystem({data}) {
         </tr>
           {
         data.map((itm,idx)=>(
-        <tr key={idx} className='p-3'>
-              <td>{idx + 1}</td> {/* Auto-generated index */}
-              <td>{itm.plot}</td>
-              <td>{itm.startTime}</td>
-              <td>{itm.endTime}</td>
-              <td>{itm.RunBy}</td>
-              <td>{cal(itm.startTime,itm.endTime)}</td>
-            </tr>
+        <>
+          <tr key={idx} className='p-3'>
+                <td>{idx + 1}</td> {/* Auto-generated index */}
+                <td>{itm.plot}</td>
+                <td>{itm.startTime}</td>
+                <td>{itm.endTime}</td>
+                <td>{itm.RunBy}</td>
+                <td>{cal(itm.startTime,itm.endTime)}</td>
+              </tr>
+        </>
         ))
     }
        </table>
